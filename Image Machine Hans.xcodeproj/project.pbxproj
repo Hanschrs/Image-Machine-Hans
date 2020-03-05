@@ -15,6 +15,7 @@
 		C06448BD2411118700824CA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C06448BC2411118700824CA0 /* Assets.xcassets */; };
 		C06448C02411118700824CA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C06448BE2411118700824CA0 /* LaunchScreen.storyboard */; };
 		C06448C82411143500824CA0 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = C06448C72411143500824CA0 /* Readme.md */; };
+		C06448CA2411147A00824CA0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C06448C92411147A00824CA0 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		C06448BF2411118700824CA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C06448C12411118700824CA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C06448C72411143500824CA0 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
+		C06448C92411147A00824CA0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +46,7 @@
 		C06448A42411118600824CA0 = {
 			isa = PBXGroup;
 			children = (
+				C06448C92411147A00824CA0 /* .gitignore */,
 				C06448C72411143500824CA0 /* Readme.md */,
 				C06448AF2411118600824CA0 /* Image Machine Hans */,
 				C06448AE2411118600824CA0 /* Products */,
@@ -131,6 +134,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C06448CA2411147A00824CA0 /* .gitignore in Resources */,
 				C06448C02411118700824CA0 /* LaunchScreen.storyboard in Resources */,
 				C06448BD2411118700824CA0 /* Assets.xcassets in Resources */,
 				C06448C82411143500824CA0 /* Readme.md in Resources */,
