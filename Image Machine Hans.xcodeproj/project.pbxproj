@@ -16,6 +16,10 @@
 		C06448C02411118700824CA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C06448BE2411118700824CA0 /* LaunchScreen.storyboard */; };
 		C06448C82411143500824CA0 /* Readme.md in Resources */ = {isa = PBXBuildFile; fileRef = C06448C72411143500824CA0 /* Readme.md */; };
 		C06448CA2411147A00824CA0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = C06448C92411147A00824CA0 /* .gitignore */; };
+		C06448CE2411171500824CA0 /* MachineDataVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06448CD2411171500824CA0 /* MachineDataVC.swift */; };
+		C06448D02411173D00824CA0 /* MachineDataDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06448CF2411173D00824CA0 /* MachineDataDetailsVC.swift */; };
+		C0AB0FAF24111B2A0073BE3D /* MachineFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AB0FAE24111B2A0073BE3D /* MachineFormVC.swift */; };
+		C0AB0FB12411480D0073BE3D /* MachineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AB0FB02411480D0073BE3D /* MachineTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,10 @@
 		C06448C12411118700824CA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C06448C72411143500824CA0 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		C06448C92411147A00824CA0 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		C06448CD2411171500824CA0 /* MachineDataVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachineDataVC.swift; sourceTree = "<group>"; };
+		C06448CF2411173D00824CA0 /* MachineDataDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachineDataDetailsVC.swift; sourceTree = "<group>"; };
+		C0AB0FAE24111B2A0073BE3D /* MachineFormVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachineFormVC.swift; sourceTree = "<group>"; };
+		C0AB0FB02411480D0073BE3D /* MachineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachineTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +80,10 @@
 				C06448BE2411118700824CA0 /* LaunchScreen.storyboard */,
 				C06448C12411118700824CA0 /* Info.plist */,
 				C06448B92411118600824CA0 /* Image_Machine_Hans.xcdatamodeld */,
+				C06448CD2411171500824CA0 /* MachineDataVC.swift */,
+				C06448CF2411173D00824CA0 /* MachineDataDetailsVC.swift */,
+				C0AB0FAE24111B2A0073BE3D /* MachineFormVC.swift */,
+				C0AB0FB02411480D0073BE3D /* MachineTableViewCell.swift */,
 			);
 			path = "Image Machine Hans";
 			sourceTree = "<group>";
@@ -149,8 +161,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C06448CE2411171500824CA0 /* MachineDataVC.swift in Sources */,
+				C06448D02411173D00824CA0 /* MachineDataDetailsVC.swift in Sources */,
 				C06448B52411118600824CA0 /* ViewController.swift in Sources */,
 				C06448B12411118600824CA0 /* AppDelegate.swift in Sources */,
+				C0AB0FAF24111B2A0073BE3D /* MachineFormVC.swift in Sources */,
+				C0AB0FB12411480D0073BE3D /* MachineTableViewCell.swift in Sources */,
 				C06448B32411118600824CA0 /* SceneDelegate.swift in Sources */,
 				C06448BB2411118600824CA0 /* Image_Machine_Hans.xcdatamodeld in Sources */,
 			);
