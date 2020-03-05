@@ -69,28 +69,28 @@ class MachineFormVC: UIViewController {
             self.present(alertController, animated: true, completion: nil)
             return
         }
-        guard let name = nameTF.text, id != "" else {
+        guard let name = nameTF.text, name != "" else {
             let alertController = UIAlertController(title: "Warning", message: "Name must not be empty!", preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(alertAction)
             self.present(alertController, animated: true, completion: nil)
             return
         }
-        guard let type = typeTF.text, id != "" else {
+        guard let type = typeTF.text, type != "" else {
             let alertController = UIAlertController(title: "Warning", message: "Type must not be empty!", preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(alertAction)
             self.present(alertController, animated: true, completion: nil)
             return
         }
-        guard let qr = qrTF.text, id != "" else {
+        guard let qr = qrTF.text, qr != "" else {
             let alertController = UIAlertController(title: "Warning", message: "QR must not be empty!", preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(alertAction)
             self.present(alertController, animated: true, completion: nil)
             return
         }
-        guard let date = lastMaintainTF.text, id != "" else {
+        guard let date = lastMaintainTF.text, date != "" else {
             let alertController = UIAlertController(title: "Warning", message: "Maintain Date must not be empty!", preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(alertAction)
@@ -155,9 +155,9 @@ class MachineFormVC: UIViewController {
             } catch {
                 print(error.localizedDescription)
             }
-            
-            self.navigationController?.popViewController(animated: true)
         }
+        self.navigationController?.popViewController(animated: true)
+
     }
     
     func selectPhotoFromLibrary(){

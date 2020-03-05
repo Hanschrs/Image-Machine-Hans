@@ -12,7 +12,6 @@ import CoreData
 class MachineDataVC: UIViewController {
     
     var machines:[Machines] = []
-    var filteredMachines:[Machines] = []
     let searchController = UISearchController(searchResultsController: nil)
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -20,39 +19,41 @@ class MachineDataVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.title = "Machine Lists"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         do {
             let machineFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Machines")
+            let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+            machineFetch.sortDescriptors = [sortDescriptor]
             machines = try context.fetch(machineFetch) as! [Machines]
         } catch {
             print(error.localizedDescription)
         }
         self.machineTableView.reloadData()
     }
-    
-    func setupView() {
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationItem.title = "Machine Lists"
+}
 
-        searchController.searchBar.placeholder = "Find Machine"
-        searchController.hidesNavigationBarDuringPresentation = true
-        
-        machineTableView.tableHeaderView = searchController.searchBar
-        
+extension MachineDataVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return machines.count
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let machine = machines[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "machineCell", for: indexPath) as! MachineTableViewCell
+        cell.nameLabel.text = machine.name
+        cell.typeLabel.text = machine.type
+        
+        return cell
     }
-    */
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let controller = self.storyboard?.instantiateViewController(identifier: "machineDetailID") as! MachineDataDetailsVC
+        controller.machineID = Int(machines[indexPath.row].id)
+        self.navigationController?.pushViewController(controller, animated: true)
+        
+    }
 }
