@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GpJ-nO-iml">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <rect key="frame" x="0.0" y="156" width="414" height="706"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="machineCell" id="pAm-Vc-ny9" customClass="MachineTableViewCell" customModule="Image_Machine_Hans" customModuleProvider="target">
@@ -33,7 +33,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XHp-4n-zrA" userLabel="labelType">
-                                                    <rect key="frame" x="20" y="51" width="374" height="21"/>
+                                                    <rect key="frame" x="20" y="51" width="374" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -59,13 +59,40 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Ewt-Bf-miP"/>
                                 </connections>
                             </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ceP-OM-dWX">
+                                <rect key="frame" x="0.0" y="88" width="414" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEZ-Ho-Cpy">
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="60"/>
+                                        <state key="normal" title="Sort By Name"/>
+                                        <connections>
+                                            <action selector="sort:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5kD-Aw-qQS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EqK-Td-BGc">
+                                        <rect key="frame" x="207" y="0.0" width="207" height="60"/>
+                                        <state key="normal" title="Sort By Type"/>
+                                        <connections>
+                                            <action selector="sort:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r8z-hM-lAH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="EKB-wm-QSm"/>
+                                    <constraint firstItem="EqK-Td-BGc" firstAttribute="width" secondItem="ceP-OM-dWX" secondAttribute="width" multiplier="0.5" id="Z6q-iv-2sz"/>
+                                    <constraint firstItem="tEZ-Ho-Cpy" firstAttribute="width" secondItem="ceP-OM-dWX" secondAttribute="width" multiplier="0.5" id="mIV-Or-3ly"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="GpJ-nO-iml" secondAttribute="bottom" id="0uG-xR-a4C"/>
+                            <constraint firstItem="ceP-OM-dWX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="BhT-re-nfF"/>
+                            <constraint firstItem="GpJ-nO-iml" firstAttribute="top" secondItem="ceP-OM-dWX" secondAttribute="bottom" constant="8" symbolic="YES" id="WJi-QM-YGu"/>
                             <constraint firstItem="GpJ-nO-iml" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="cpK-7T-mYr"/>
-                            <constraint firstItem="GpJ-nO-iml" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="h8R-sH-bZ4"/>
+                            <constraint firstItem="ceP-OM-dWX" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="o3i-1v-qp3"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GpJ-nO-iml" secondAttribute="trailing" id="q0O-mb-YyY"/>
+                            <constraint firstItem="ceP-OM-dWX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="v5h-ja-Rh7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -78,6 +105,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="machineTableView" destination="GpJ-nO-iml" id="cYK-Pb-4OJ"/>
+                        <outlet property="sortNameBtn" destination="tEZ-Ho-Cpy" id="Da7-Gy-Suc"/>
+                        <outlet property="sortTypeBtn" destination="EqK-Td-BGc" id="QRM-QJ-HRS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -60,23 +60,16 @@ class MachineFormVC: UIViewController {
         //generate ID
         if machineID == 0 {
             isNew = true
-            let machines = Machines(context: context)
-            let request: NSFetchRequest = Machines.fetchRequest()
+            let machineFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Machines")
+            machineFetch.fetchLimit = 1
             let sortDescriptors = NSSortDescriptor(key: "id", ascending: false)
-            request.sortDescriptors = [sortDescriptors]
-            request.fetchLimit = 1
+            machineFetch.sortDescriptors = [sortDescriptors]
+            machineFetch.fetchLimit = 1
             
-            var latestID = 0
-            do {
-                let lastMachine = try context.fetch(request)
-                latestID = Int(lastMachine.first?.id ?? 0)
-            } catch {
-                print(error.localizedDescription)
-            }
-            machineID = latestID + 1
-            idTF.text = "\(machineID)"
+            let result = try! context.fetch(machineFetch)
+            let machine: Machines = result.first as! Machines
+            idTF.text = "\(machine.id+1)"
         }
-
         
     }
     
@@ -140,6 +133,7 @@ class MachineFormVC: UIViewController {
             addMachine.type = type
             addMachine.qr = Int32(qr)!
             addMachine.maintain_date = maintainDate
+            
             
             //add image
             

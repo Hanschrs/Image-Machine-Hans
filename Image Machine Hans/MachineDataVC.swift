@@ -15,7 +15,12 @@ class MachineDataVC: UIViewController {
     let searchController = UISearchController(searchResultsController: nil)
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    @IBOutlet weak var sortNameBtn: UIButton!
+    @IBOutlet weak var sortTypeBtn: UIButton!
     @IBOutlet weak var machineTableView: UITableView!
+    
+    var sortNameAsc = true
+    var sortTypeAsc = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +40,41 @@ class MachineDataVC: UIViewController {
         }
         self.machineTableView.reloadData()
     }
+    
+    @IBAction func sort(_ sender: UIButton) {
+        do {
+            let machineFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Machines")
+            var sortDescriptor = NSSortDescriptor()
+            if sender.tag == 0 {
+                if sortNameAsc {
+                    sortDescriptor = NSSortDescriptor(key: "name", ascending: false)
+                    sortNameAsc = false
+                } else {
+                    sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
+                    sortNameAsc = true
+                }
+            } else if sender.tag == 1 {
+                if sortTypeAsc {
+                    sortDescriptor = NSSortDescriptor(key: "type", ascending: false)
+                    sortTypeAsc = false
+                } else {
+                    sortDescriptor = NSSortDescriptor(key: "type", ascending: true)
+                    sortTypeAsc = true
+                }
+            }
+            
+            print(sortNameAsc)
+            print(sortTypeAsc)
+
+            machineFetch.sortDescriptors = [sortDescriptor]
+            machines = try context.fetch(machineFetch) as! [Machines]
+        } catch {
+            print(error.localizedDescription)
+        }
+        machineTableView.reloadData()
+    }
+    
+    
 }
 
 extension MachineDataVC: UITableViewDelegate, UITableViewDataSource {
