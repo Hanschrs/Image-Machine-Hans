@@ -37,19 +37,18 @@ class MachineDataDetailsVC: UIViewController {
         nameLabel.text = machine.name
         typeLabel.text = machine.type
         qrLabel.text = String(machine.qr)
-        print(machine.maintain_date)
         
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "dd-MM-yyyy"
-//        lastMantainDateLabel.text = dateFormatter.string(from: machine.maintain_date!)
-//
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        lastMantainDateLabel.text = dateFormatter.string(from: machine.maintain_date!)
+
         self.navigationItem.title = "\(machine.name ?? "MACHINE DETAIL")"
     }
     
     func setupView() {
         let editBtn = UIBarButtonItem(title: "edit", style: .plain, target: self, action: #selector(edit))
         let removeBtn = UIBarButtonItem(title: "remove", style: .plain, target: self, action: #selector(remove))
-        self.navigationItem.rightBarButtonItems = [editBtn, removeBtn]
+        self.navigationItem.rightBarButtonItems = [removeBtn, editBtn]
     }
     
     @objc func edit() {

@@ -15,9 +15,10 @@ class MachineFormVC: UIViewController {
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var typeTF: UITextField!
     @IBOutlet weak var qrTF: UITextField!
-    @IBOutlet weak var lastMaintainTF: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     var machineID = 0
+    var isNew = false
     let imagePicker = UIImagePickerController()
     
     let dateFormatter = DateFormatter()
@@ -51,9 +52,31 @@ class MachineFormVC: UIViewController {
             qrTF.text = String(machine.qr)
             
             dateFormatter.dateFormat = "dd-MM-yyyy"
-            lastMaintainTF.text = dateFormatter.string(from: machine.maintain_date!)
+            datePicker.date = machine.maintain_date!
         }
         
+        datePicker.datePickerMode = .date
+        
+        //generate ID
+        if machineID == 0 {
+            isNew = true
+            let machines = Machines(context: context)
+            let request: NSFetchRequest = Machines.fetchRequest()
+            let sortDescriptors = NSSortDescriptor(key: "id", ascending: false)
+            request.sortDescriptors = [sortDescriptors]
+            request.fetchLimit = 1
+            
+            var latestID = 0
+            do {
+                let lastMachine = try context.fetch(request)
+                latestID = Int(lastMachine.first?.id ?? 0)
+            } catch {
+                print(error.localizedDescription)
+            }
+            machineID = latestID + 1
+            idTF.text = "\(machineID)"
+        }
+
         
     }
     
@@ -90,42 +113,12 @@ class MachineFormVC: UIViewController {
             self.present(alertController, animated: true, completion: nil)
             return
         }
-        guard let date = lastMaintainTF.text, date != "" else {
-            let alertController = UIAlertController(title: "Warning", message: "Maintain Date must not be empty!", preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(alertAction)
-            self.present(alertController, animated: true, completion: nil)
-            return
-        }
-    
-        let maintainDate = dateFormatter.date(from: lastMaintainTF.text!)
+        
+        let maintainDate = datePicker.date
         
         
         //check where it comes from
-        if machineID > 0 {
-            //from list
-            let machineFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Machines")
-            machineFetch.fetchLimit = 1
-            machineFetch.predicate = NSPredicate(format: "id == \(machineID)")
-            
-            let result = try! context.fetch(machineFetch)
-            let machine: Machines = result.first as! Machines
-            
-            machine.id = Int32(id)!
-            machine.name = name
-            machine.type = type
-            machine.qr = Int32(qr)!
-            machine.maintain_date = maintainDate
-            
-            //add image
-            
-            do {
-                try context.save()
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
-        else {
+        if isNew {
             //add new
             let addMachine = Machines(context: context)
             
@@ -149,7 +142,30 @@ class MachineFormVC: UIViewController {
             addMachine.maintain_date = maintainDate
             
             //add image
-           
+            
+            do {
+                try context.save()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        else {
+            //from list
+            let machineFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Machines")
+            machineFetch.fetchLimit = 1
+            machineFetch.predicate = NSPredicate(format: "id == \(machineID)")
+            
+            let result = try! context.fetch(machineFetch)
+            let machine: Machines = result.first as! Machines
+            
+            machine.id = Int32(id)!
+            machine.name = name
+            machine.type = type
+            machine.qr = Int32(qr)!
+            machine.maintain_date = maintainDate
+            
+            //add image
+            
             do {
                 try context.save()
             } catch {
@@ -157,12 +173,14 @@ class MachineFormVC: UIViewController {
             }
         }
         self.navigationController?.popViewController(animated: true)
-
+        
     }
     
     func selectPhotoFromLibrary(){
         self.present(imagePicker, animated: true, completion: nil)
     }
+    
+    
     
     /*
     // MARK: - Navigation

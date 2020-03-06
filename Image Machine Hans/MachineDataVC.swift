@@ -29,6 +29,7 @@ class MachineDataVC: UIViewController {
             let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
             machineFetch.sortDescriptors = [sortDescriptor]
             machines = try context.fetch(machineFetch) as! [Machines]
+            print("fetch \(machines.count)")
         } catch {
             print(error.localizedDescription)
         }
@@ -51,6 +52,7 @@ extension MachineDataVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath)
         let controller = self.storyboard?.instantiateViewController(identifier: "machineDetailID") as! MachineDataDetailsVC
         controller.machineID = Int(machines[indexPath.row].id)
         self.navigationController?.pushViewController(controller, animated: true)
